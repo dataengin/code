@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM debian
 
 RUN apt-get update \
  && apt-get install -y \
@@ -14,13 +14,6 @@ RUN apt-get update \
     procps \
     sudo \
     ssh \
-    aria2 \
-    speedtest-cli \
-    python \
-    httpie \
-    python-pip \
-    python3 \
-    python3-pip \
     screen \
     wget \
     zip \
@@ -49,6 +42,30 @@ RUN ARCH="$(dpkg --print-architecture)" && \
     chmod 4755 /usr/local/bin/fixuid && \
     mkdir -p /etc/fixuid && \
     printf "user: coder\ngroup: coder\n" > /etc/fixuid/config.yml
+
+RUN apt-get update \
+ && apt-get install -y \
+    curl \
+    dumb-init \
+    htop \
+    locales \
+    man \
+    nano \
+    cron \
+    git \
+    wget \
+    procps \
+    sudo \
+    ssh \
+    screen \
+    wget \
+    zip \
+    unzip \
+    openssl \
+    pkg-config \
+    apt-utils \
+    build-essential \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp && \
   curl -L --silent \
